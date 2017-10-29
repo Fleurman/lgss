@@ -2,23 +2,11 @@
 #class Viewport
 
 |Needed methods:|
--[ ] dispose
--[ ] disposed?
--[ ] flash
 _-[ ] z=_
 
 **TODO:**
--[ ] blend,substract
 -[ ] brightness
 -[ ] opacity
-
-_args:_
--rect
--visible
--width,height
--x,y,z
--ox,oy
--color,tone
 
 ]]--
 Viewport = class("Viewport")
@@ -36,7 +24,7 @@ function Viewport:init(x,y,width,height)
       local hk = "_" .. k
       return rawget(s,hk)
     end
-    return rawget(s,k)
+    return s.class[k]
   end
   
   getmetatable(self).__newindex = function(s,k,v)
@@ -53,8 +41,14 @@ function Viewport:init(x,y,width,height)
     rawset(s,k,v)
   end
   
-  self.x,self.y,self.width,self.height = 0,0,0,0
-  self.rect = function() return Rect(self.x,self.y,self.width,self.height) end
+  if y == nil then 
+    self.rect = x
+    self.x,self.y,self.width,self.height = x.x,x.y,x.width,x.height
+  else
+    self.x,self.y,self.width,self.height = x,y,width,height
+    self.rect = Rect(self.x,self.y,self.width,self.height)
+  end
+  
   self.z = 0
   self.visible = true
   self.ox,self.oy = 0,0
@@ -64,17 +58,19 @@ function Viewport:init(x,y,width,height)
 end
 
 function Viewport:dispose()
-  
+  self.disposed = true
 end
 
 function Viewport:disposed()
-  
+  return self.disposed
 end
 
-function Viewport:flash()
-  
+function Viewport:flash(color,duration)
+  self.flash_color = color or Color("white")
+  self.flash_duration = duration or 100
 end
 
 function Viewport:update(dt)
-  
+    self.flash_duration = math.max(self.flash_duration - 1, 0)
+    if self.flash_duration == 0 then self.flash_color = nil end
 end

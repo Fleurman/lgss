@@ -10,6 +10,8 @@ The ultimate goal of the project is an RPG Maker-like Editor.
 
 ]]--
 
+class = require "LGSS/ext/30Log"
+
 LGSS = {}
 
 LGSS.audioFormats = {".ogg",".mp3",".wav",}
@@ -37,16 +39,20 @@ function LGSS:update(dt)
 end
 
 --Modules
-require "LGSS/Cache"
-require "LGSS/Graphics"
-require "LGSS/Audio"
-require "LGSS/Input"
+require "LGSS/modules/RPG"
+require "LGSS/modules/Cache"
+require "LGSS/modules/Graphics"
+require "LGSS/modules/Audio"
+require "LGSS/modules/Input"
 
 --Classes
-require "LGSS/Rect"
-require "LGSS/Font"
-require "LGSS/Tone"
-require "LGSS/Color"
-require "LGSS/Viewport"
+require "LGSS/classes/Table"
+require "LGSS/classes/Font"
+require "LGSS/classes/Tone"
+require "LGSS/classes/Color"
+require "LGSS/classes/Rect"
+require "LGSS/classes/Viewport"
+require "LGSS/classes/Sprite"
+require "LGSS/classes/Bitmap"
 
 require "LGSS/Test"

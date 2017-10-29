@@ -3,7 +3,6 @@
 
 **TODO:**
 -[ ] repeated?
--[ ] handle mutliple press
 
 ]]--
 Input = {}
@@ -39,6 +38,22 @@ function Input:repeated(key)
     if self.keys.key.state == "repeat" then return true end
   end
   return false 
+end
+
+function Input:dir4()
+    if self:press("down") then return 2 end
+    if self:press("left")  then return 4 end
+    if self:press("right") then return 6 end
+    if self:press("up") then return 8 end
+    return 0
+end
+  
+function Input:dir8()
+    if self:press("down") and self:press("left") then return 1 end
+    if self:press("down") and self:press("right") then return 3 end
+    if self:press("up") and self:press("left") then return 7 end
+    if self:press("up") and self:press("right") then return 9 end
+    return dir4
 end
 
 function love.keypressed( key, scancode, isrepeat )

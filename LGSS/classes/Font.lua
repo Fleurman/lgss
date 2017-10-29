@@ -17,7 +17,7 @@ Font = class("Font")
 
 function Font:init(name,size)
   
-  self._name = name
+  self._name = name and name or nil
   self._size = size and size or 24
   
   getmetatable(self).__newindex = function(s,k,v)
