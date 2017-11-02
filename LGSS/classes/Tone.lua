@@ -51,13 +51,15 @@ function Tone:init(r,g,b,gr)
     return s.class[k]
   end
   
-  gr = gr and gr or 255
+  gr = gr or 255
   
   if type(r) == "number" then
     self.red,self.green,self.blue,self.grey = r,g,b,gr
   elseif r == "black" then
-    self.red,self.green,self.blue,self.grey = 0,0,0,255
+    self.red,self.green,self.blue,self.grey = 0,0,0,0
   elseif r == "white" then
+    self.red,self.green,self.blue,self.grey = 255,255,255,0
+  elseif r == "grey" then
     self.red,self.green,self.blue,self.grey = 255,255,255,255
   else
     self.red,self.green,self.blue,self.grey = r.r,r.g,r.b,r.gr
@@ -80,7 +82,7 @@ function Tone:init(r,g,b,gr)
 end
 
 function Tone:set(r,g,b,gr)
-  gr = gr and gr or self.grey
+  gr = gr or self.grey
   if type(r) == "number" then
     self.red,self.green,self.blue,self.grey = r,g,b,gr
   else

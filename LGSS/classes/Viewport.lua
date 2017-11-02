@@ -71,6 +71,6 @@ function Viewport:flash(color,duration)
 end
 
 function Viewport:update(dt)
-    self.flash_duration = math.max(self.flash_duration - 1, 0)
-    if self.flash_duration == 0 then self.flash_color = nil end
+  self.flash_duration = math.max(self.flash_duration - 1, 0)
+  if self.flash_duration == 0 then self.flash_color = nil end
 end

@@ -83,5 +83,5 @@ function Graphics:update(dt)
   self:draw()
   self.frame_count = self.frame_count + 1
   self.frame_rate = love.timer.getFPS()
-  love.graphics.present()
+  if not self.freezed then love.graphics.present() end
 end

@@ -10,8 +10,6 @@ The ultimate goal of the project is an RPG Maker-like Editor.
 
 ]]--
 
-class = require "LGSS/ext/30Log"
-
 LGSS = {}
 
 LGSS.audioFormats = {".ogg",".mp3",".wav",}
@@ -25,6 +23,11 @@ function LGSS:filename(path)
     if love.filesystem.exists(test) then return test else end
   end
   for i,f in pairs(LGSS.fontFormats) do
+    if path:find(f) then return path end
+    local test = path .. f
+    if love.filesystem.exists(test) then return test else end
+  end
+  for i,f in pairs(LGSS.imageFormats) do
     if path:find(f) then return path end
     local test = path .. f
     if love.filesystem.exists(test) then return test else end

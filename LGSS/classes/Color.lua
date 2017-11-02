@@ -52,7 +52,7 @@ function Color:init(r,g,b,a)
     return s.class[k]
   end
   
-  a = a and a or 255
+  a = a or 255
   
   if type(r) == "number" then
     self.red,self.green,self.blue,self.alpha = r,g,b,a
@@ -99,7 +99,7 @@ function Color:init(r,g,b,a)
 end
 
 function Color:set(r,g,b,a)
-  a = a and a or self.a
+  a = a or self.a
   if r:instanceOf(Color) then
     self.r,self.g,self.b,self.a = r.r,r.g,r.b,r.a
   else

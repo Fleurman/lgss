@@ -12,6 +12,24 @@
 Sprite = class("Sprite")
 
 function Sprite:init(view)
+    self._bitmap = nil
+    
+    getmetatable(self).__newindex = function(s,k,v)
+      if k == "bitmap" then
+        s:set_bitmap(v)
+        return
+      end
+      rawset(s, k, v)
+    end
+    
+    getmetatable(self).__index = function(s,k)
+      if k == "bitmap" then
+        local name = "_" .. k
+        return rawget(s, name)
+      end
+      return s.class[k]
+    end
+    
     self.viewport = view
     self.visible = true
     self.x, self.y, self.z = 0, 0, 0
@@ -41,10 +59,13 @@ function Sprite:disposed()
 end
 
 function Sprite:set_bitmap(bitmap)
-  self.bitmap = bitmap
-  self.src_rect = Rect.new(0, 0, bitmap.width, bitmap.height)
+  self._bitmap = bitmap
+  self.src_rect.width,self.src_rect.height = bitmap.width, bitmap.height
 end
 
 function Sprite:draw()
+  local v = self.viewport
+  if v then love.graphics.setScissor(v.x,v.y,v.width,v.height) end
   love.graphics.draw(self.bitmap(),self.x,self.y)
+  love.graphics.origin()
 end

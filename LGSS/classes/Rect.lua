@@ -2,13 +2,8 @@
 class RECT
 
 Needed methods:
--[x] init (first param can be a Rect)
--[x] set (first param can be a Rect)
--[x] empty
--[x] == ?
 
 TODO:
--[ ] better handling of rect = Rect
 -[ ] 
 
 ]]--
@@ -29,6 +24,9 @@ function Rect:init(x,y,width,height)
   end
   getmetatable(self).__call = function(s)
     return s.x,s.y,s.width,s.height
+  end
+  getmetatable(self).__tostring = function(s)
+    return tostring(s.x .. "," .. s.y .. "," .. s.width .. "," .. s.height)
   end
 end
 
