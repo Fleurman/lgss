@@ -127,35 +127,63 @@ end
 
 function Color.__add(col1,col2)
   local c = Color()
-  c.r = col1.r + col2.r
-  c.g = col1.g + col2.g
-  c.b = col1.b + col2.b
-  c.a = col1.a + col2.a
+  if type(col2) == "table" then
+    c.r = col1.r + col2.r
+    c.g = col1.g + col2.g
+    c.b = col1.b + col2.b
+    c.a = col1.a + col2.a
+  else
+    c.r = col1.r + col2
+    c.g = col1.g + col2
+    c.b = col1.b + col2
+    c.a = col1.a + col2
+  end
   return c
 end
 function Color.__sub(col1,col2)
   local c = Color()
-  c.r = col1.r - col2.r
-  c.g = col1.g - col2.g
-  c.b = col1.b - col2.b
-  c.a = col1.a - col2.a
+  if type(col2) == "table" then
+    c.r = col1.r - col2.r
+    c.g = col1.g - col2.g
+    c.b = col1.b - col2.b
+    c.a = col1.a - col2.a
+  else
+    c.r = col1.r - col2
+    c.g = col1.g - col2
+    c.b = col1.b - col2
+    c.a = col1.a - col2
+  end
   return c
 end
 
 function Color.__mul(col1,col2)
   local c = Color()
-  c.r = col1.r * col2.r
-  c.g = col1.g * col2.g
-  c.b = col1.b * col2.b
-  c.a = col1.a * col2.a
+  if type(col2) == "table" then
+    c.r = col1.r * col2.r
+    c.g = col1.g * col2.g
+    c.b = col1.b * col2.b
+    c.a = col1.a * col2.a
+  else
+    c.r = col1.r * col2
+    c.g = col1.g * col2
+    c.b = col1.b * col2
+    c.a = col1.a * col2
+  end
   return c
 end
 
 function Color.__div(col1,col2)
   local c = Color()
-  c.r = col1.r/col2.r
-  c.g = col1.g/col2.g
-  c.b = col1.b/col2.b
-  c.a = col1.a/col2.a
+  if type(col2) == "table" then
+    c.r = col1.r / col2.r
+    c.g = col1.g / col2.g
+    c.b = col1.b / col2.b
+    c.a = col1.a / col2.a
+  else
+    c.r = col1.r / col2
+    c.g = col1.g / col2
+    c.b = col1.b / col2
+    c.a = col1.a / col2
+  end
   return c
 end

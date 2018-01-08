@@ -20,17 +20,17 @@ function LGSS:filename(path)
   for i,f in pairs(LGSS.audioFormats) do
     if path:find(f) then return path end
     local test = path .. f
-    if love.filesystem.exists(test) then return test else end
+    if love.filesystem.exists(test) then return test,f else end
   end
   for i,f in pairs(LGSS.fontFormats) do
     if path:find(f) then return path end
     local test = path .. f
-    if love.filesystem.exists(test) then return test else end
+    if love.filesystem.exists(test) then return test,f else end
   end
   for i,f in pairs(LGSS.imageFormats) do
     if path:find(f) then return path end
     local test = path .. f
-    if love.filesystem.exists(test) then return test else end
+    if love.filesystem.exists(test) then return test,f else end
   end
   return false 
 end
@@ -40,6 +40,13 @@ function LGSS:update(dt)
   Audio:update(dt)
   Input:update(dt)
 end
+
+function LGSS:restart()
+  Cache:clear()
+  Graphics:restart()
+end
+
+class = require "LGSS/ext/p30Log"
 
 --Modules
 require "LGSS/modules/RPG"
@@ -56,6 +63,9 @@ require "LGSS/classes/Color"
 require "LGSS/classes/Rect"
 require "LGSS/classes/Viewport"
 require "LGSS/classes/Sprite"
+require "LGSS/classes/Plane"
 require "LGSS/classes/Bitmap"
+require "LGSS/classes/Window"
+require "LGSS/classes/Tilemap"
 
 require "LGSS/Test"

@@ -51,10 +51,14 @@ function Viewport:init(x,y,width,height)
   
   self.z = 0
   self.visible = true
+  self.opacity = 255
   self.ox,self.oy = 0,0
   self.color = Color("white")
   self.tone = Tone("white")
   
+  getmetatable(self).__tostring = function(s)
+    return "" .. s.x .. ", " .. s.y .. ", " .. s.width .. ", " .. s.height
+  end
 end
 
 function Viewport:dispose()

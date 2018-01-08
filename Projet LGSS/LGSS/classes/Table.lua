@@ -29,8 +29,8 @@ function Table:init(x,y,z)
   self.ysize = y and y or 1
   self.zsize = z and z or 1
   self.data = {}
-  for row=1,self.xsize do
-    for col=1,self.ysize do
+  for row=1,self.xsize+1 do
+    for col=1,self.ysize+1 do
         self.data[row*self.ysize +col] = {}
     end
   end
